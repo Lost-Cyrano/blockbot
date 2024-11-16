@@ -1,23 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Blocs</title>
+    <title>Jeu Block - IA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Jeu de Blocs</h1>
-    <div id="game-container">
-        <!-- Grille de jeu -->
-        <div id="grid"></div>
+    <div class="container">
+        <header>
+            <h1>Jeu Block - IA</h1>
+        </header>
+
+        <main>
+            <section class="game-board">
+                <h2>Grille de Jeu</h2>
+                <div id="grid"></div>
+            </section>
+
+            <section class="controls">
+                <h2>Contrôles</h2>
+                <button id="edit-grid">Éditer la Grille</button>
+                <button id="confirm-grid" disabled>Confirmer la Grille</button>
+                <button id="restart-game">Recommencer</button>
+            </section>
+
+            <section class="forms">
+                <h2>Formes Disponibles</h2>
+                <div id="forms"></div>
+                <input type="text" id="input-shape" placeholder="Entrez les formes (ex: carré)" />
+                <button id="submit-shape">Valider la Forme</button>
+            </section>
+
+            <section id="status">
+                <h3 id="game-status">Statut : En attente</h3>
+            </section>
+        </main>
     </div>
-    <div id="shapes-container">
-        <!-- Conteneur des formes -->
-        <h2>Formes disponibles</h2>
-        <div id="shapes"></div>
-    </div>
-    <p id="status"></p>
+
     <script src="script.js"></script>
 </body>
 </html>
