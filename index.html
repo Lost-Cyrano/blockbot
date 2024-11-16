@@ -7,37 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Jeu Block - IA</h1>
-        </header>
+    <header>
+        <h1>Jeu Block - Simulation avec IA</h1>
+    </header>
+    <main>
+        <!-- Section pour la grille de jeu -->
+        <section id="game-board">
+            <h2>Grille de Jeu</h2>
+            <div id="grid"></div>
+        </section>
 
-        <main>
-            <section class="game-board">
-                <h2>Grille de Jeu</h2>
-                <div id="grid"></div>
-            </section>
+        <!-- Section pour les contrôles -->
+        <section id="controls">
+            <button id="edit-grid">Éditer la Grille</button>
+            <button id="confirm-grid" disabled>Confirmer la Grille</button>
+            <button id="restart-game">Recommencer</button>
+        </section>
 
-            <section class="controls">
-                <h2>Contrôles</h2>
-                <button id="edit-grid">Éditer la Grille</button>
-                <button id="confirm-grid" disabled>Confirmer la Grille</button>
-                <button id="restart-game">Recommencer</button>
-            </section>
+        <!-- Section pour afficher les formes -->
+        <section id="shapes">
+            <h2>Formes Disponibles</h2>
+            <div id="shape-container"></div>
+        </section>
 
-            <section class="forms">
-                <h2>Formes Disponibles</h2>
-                <div id="forms"></div>
-                <input type="text" id="input-shape" placeholder="Entrez les formes (ex: carré)" />
-                <button id="submit-shape">Valider la Forme</button>
-            </section>
-
-            <section id="status">
-                <h3 id="game-status">Statut : En attente</h3>
-            </section>
-        </main>
-    </div>
-
+        <!-- Section de statut -->
+        <section id="status">
+            <h3 id="game-status">Statut : En attente</h3>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
