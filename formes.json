@@ -1,0 +1,7 @@
+[
+    { "name": "Carré 2x2", "blocks": ["0", "1", "9", "10"] },
+    { "name": "Ligne de 5", "blocks": ["0", "1", "2", "3", "4"] },
+    { "name": "Colonne de 3", "blocks": ["0", "9", "18"] },
+    { "name": "L inversé", "blocks": ["0", "1", "9", "17"] },
+    { "name": "L classique", "blocks": ["0", "8", "16", "17"] }
+]
