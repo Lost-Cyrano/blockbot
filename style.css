@@ -1,52 +1,94 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-#game-container {
-    margin: 20px auto;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2em;
+    color: #444;
+}
+
+.game-board {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 #grid {
     display: grid;
     grid-template-columns: repeat(8, 40px);
-    grid-template-rows: repeat(8, 40px);
-    gap: 2px;
+    grid-gap: 2px;
 }
 
-.cell {
+#grid div {
     width: 40px;
     height: 40px;
-    background-color: #ddd;
-    border: 1px solid #ccc;
+    background-color: #ccc;
+    border: 1px solid #999;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#grid .filled {
+    background-color: #444;
+    color: white;
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+.forms {
+    text-align: center;
+}
+
+#forms {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.cell.filled {
-    background-color: #3498db;
-}
-
-#shapes-container {
-    margin-top: 20px;
-}
-
-.shape {
+#forms div {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed #999;
     display: flex;
-    flex-wrap: wrap;
-    margin: 10px auto;
-    width: 160px; /* Adapté pour les formes */
-    gap: 2px;
-}
-
-.shape-cell {
-    width: 40px;
-    height: 40px;
-    background-color: #ffa500;
-    border: 1px solid #ccc;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
