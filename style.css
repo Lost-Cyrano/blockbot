@@ -1,95 +1,100 @@
-/* Styles de base */
+/* Styles généraux */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #6200ea;
+    color: white;
+}
+
+main {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* En-tête */
-header {
-    text-align: center;
-    margin: 20px 0;
+#controls {
+    margin-bottom: 20px;
 }
 
-header h1 {
-    font-size: 24px;
-    color: #444;
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Grille de jeu */
-#game-board {
+button:hover {
+    background-color: #3700b3;
+}
+
+#game-container {
+    display: flex;
+    justify-content: center;
     margin: 20px 0;
 }
 
 #grid {
     display: grid;
     grid-template-columns: repeat(8, 40px);
-    grid-gap: 2px;
+    grid-template-rows: repeat(8, 40px);
+    gap: 5px;
 }
 
-#grid div {
+.cell {
     width: 40px;
     height: 40px;
-    background-color: #ddd;
-    border: 1px solid #bbb;
-    text-align: center;
-    line-height: 40px;
-    font-weight: bold;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
-#grid div.filled {
-    background-color: #444;
-    color: #fff;
-}
-
-/* Contrôles */
-#controls {
-    margin: 20px 0;
-    text-align: center;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 5px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
+.cell.filled {
+    background-color: #6200ea;
     color: white;
 }
 
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-/* Formes */
-#shapes {
-    margin: 20px 0;
+#current-forms {
     text-align: center;
+    margin-top: 20px;
 }
 
-#shape-container {
+#forms-container {
     display: flex;
-    justify-content: center;
     gap: 10px;
+    justify-content: center;
 }
 
-#shape-container div {
-    width: 100px;
-    height: 100px;
-    border: 2px dashed #aaa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
+.shape {
+    display: grid;
+    gap: 2px;
+    grid-template-columns: repeat(4, 20px);
+}
+
+.shape .block {
+    width: 20px;
+    height: 20px;
+    background-color: #6200ea;
+}
+
+footer {
     text-align: center;
-    cursor: pointer;
+    padding: 10px;
+    background-color: #6200ea;
+    color: white;
+    margin-top: 20px;
 }
