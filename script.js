@@ -1,67 +1,72 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const grid = document.getElementById("grid");
-    const editButton = document.getElementById("edit-grid");
-    const confirmButton = document.getElementById("confirm-grid");
-    const restartButton = document.getElementById("restart-game");
-    const gameStatus = document.getElementById("game-status");
-    const shapeContainer = document.getElementById("shape-container");
+// Variables globales
+const gridContainer = document.getElementById('grid');
+const formsContainer = document.getElementById('forms-container');
+const statusText = document.getElementById('game-status');
+let grid = Array(8).fill().map(() => Array(8).fill(0));
+let editMode = false;
 
-    let gridData = Array(64).fill(0); // Représentation de la grille vide
-    let editing = false;
-
-    // Créer et afficher la grille
-    function createGrid() {
-        grid.innerHTML = "";
-        gridData.forEach((cell, index) => {
-            const div = document.createElement("div");
-            div.classList.toggle("filled", cell === 1);
-            div.addEventListener("click", () => toggleCell(index));
-            grid.appendChild(div);
+// Initialisation de la grille
+function createGrid() {
+    gridContainer.innerHTML = '';
+    grid.forEach((row, y) => {
+        row.forEach((cell, x) => {
+            const cellElement = document.createElement('div');
+            cellElement.classList.add('cell');
+            if (cell === 1) cellElement.classList.add('filled');
+            cellElement.addEventListener('click', () => toggleCell(x, y));
+            gridContainer.appendChild(cellElement);
         });
-    }
-
-    // Basculer l'état d'une case pendant l'édition
-    function toggleCell(index) {
-        if (!editing) return;
-        gridData[index] = gridData[index] === 0 ? 1 : 0;
-        createGrid();
-    }
-
-    // Charger les formes depuis formes.json
-    function loadShapes() {
-        fetch("formes.json")
-            .then((response) => response.json())
-            .then((shapes) => {
-                shapeContainer.innerHTML = "";
-                shapes.forEach((shape) => {
-                    const div = document.createElement("div");
-                    div.textContent = shape.name;
-                    div.dataset.blocks = JSON.stringify(shape.blocks);
-                    shapeContainer.appendChild(div);
-                });
-            });
-    }
-
-    // Actions des boutons
-    editButton.addEventListener("click", () => {
-        editing = true;
-        confirmButton.disabled = false;
-        gameStatus.textContent = "Statut : Édition de la grille";
     });
+}
 
-    confirmButton.addEventListener("click", () => {
-        editing = false;
-        confirmButton.disabled = true;
-        gameStatus.textContent = "Statut : Grille confirmée";
-    });
-
-    restartButton.addEventListener("click", () => {
-        gridData = Array(64).fill(0);
-        createGrid();
-        gameStatus.textContent = "Statut : Jeu réinitialisé";
-    });
-
-    // Initialisation
+function toggleCell(x, y) {
+    if (!editMode) return;
+    grid[y][x] = grid[y][x] === 0 ? 1 : 0;
     createGrid();
-    loadShapes();
+}
+
+// Chargement des formes
+async function loadForms() {
+    const response = await fetch('formes.json');
+    const forms = await response.json();
+    displayForms(forms);
+}
+
+function displayForms(forms) {
+    formsContainer.innerHTML = '';
+    forms.forEach(form => {
+        const shapeElement = document.createElement('div');
+        shapeElement.classList.add('shape');
+        form.pattern.forEach(row => {
+            row.forEach(block => {
+                const blockElement = document.createElement('div');
+                blockElement.classList.add('block');
+                if (block === 0) blockElement.style.backgroundColor = 'transparent';
+                shapeElement.appendChild(blockElement);
+            });
+        });
+        formsContainer.appendChild(shapeElement);
+    });
+}
+
+// Événements des boutons
+document.getElementById('edit-mode').addEventListener('click', () => {
+    editMode = !editMode;
+    statusText.textContent = editMode ? 'Mode édition activé' : 'Mode édition désactivé';
 });
+
+document.getElementById('start-game').addEventListener('click', () => {
+    editMode = false;
+    statusText.textContent = 'Partie commencée';
+    // Logique future pour l'IA à ajouter ici.
+});
+
+document.getElementById('reset-grid').addEventListener('click', () => {
+    grid = Array(8).fill().map(() => Array(8).fill(0));
+    createGrid();
+    statusText.textContent = 'Grille réinitialisée';
+});
+
+// Initialisation
+createGrid();
+loadForms();
