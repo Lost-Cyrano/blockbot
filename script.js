@@ -1,70 +1,67 @@
-// script.js
+document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("grid");
+    const editButton = document.getElementById("edit-grid");
+    const confirmButton = document.getElementById("confirm-grid");
+    const restartButton = document.getElementById("restart-game");
+    const gameStatus = document.getElementById("game-status");
+    const shapeContainer = document.getElementById("shape-container");
 
-document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('grid');
-    const editButton = document.getElementById('edit-grid');
-    const confirmButton = document.getElementById('confirm-grid');
-    const restartButton = document.getElementById('restart-game');
-    const formsContainer = document.getElementById('forms');
-    const gameStatus = document.getElementById('game-status');
-    
-    let gridData = Array(64).fill(0); // Grille vide
-    let isEditing = false;
+    let gridData = Array(64).fill(0); // Représentation de la grille vide
+    let editing = false;
 
-    // Créer la grille
+    // Créer et afficher la grille
     function createGrid() {
-        grid.innerHTML = '';
-        gridData.forEach((value, index) => {
-            const cell = document.createElement('div');
-            cell.classList.add(value === 1 ? 'filled' : '');
-            cell.dataset.index = index;
-            cell.addEventListener('click', () => toggleCell(index));
-            grid.appendChild(cell);
+        grid.innerHTML = "";
+        gridData.forEach((cell, index) => {
+            const div = document.createElement("div");
+            div.classList.toggle("filled", cell === 1);
+            div.addEventListener("click", () => toggleCell(index));
+            grid.appendChild(div);
         });
     }
 
-    // Basculer l'état d'une case
+    // Basculer l'état d'une case pendant l'édition
     function toggleCell(index) {
-        if (!isEditing) return;
+        if (!editing) return;
         gridData[index] = gridData[index] === 0 ? 1 : 0;
         createGrid();
     }
 
-    // Charger les formes
-    function loadForms() {
-        formsContainer.innerHTML = '';
-        fetch('formes.json')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(form => {
-                    const formDiv = document.createElement('div');
-                    formDiv.textContent = form.name;
-                    formDiv.dataset.blocks = JSON.stringify(form.blocks);
-                    formsContainer.appendChild(formDiv);
+    // Charger les formes depuis formes.json
+    function loadShapes() {
+        fetch("formes.json")
+            .then((response) => response.json())
+            .then((shapes) => {
+                shapeContainer.innerHTML = "";
+                shapes.forEach((shape) => {
+                    const div = document.createElement("div");
+                    div.textContent = shape.name;
+                    div.dataset.blocks = JSON.stringify(shape.blocks);
+                    shapeContainer.appendChild(div);
                 });
             });
     }
 
-    // Écouteurs d'événements
-    editButton.addEventListener('click', () => {
-        isEditing = true;
+    // Actions des boutons
+    editButton.addEventListener("click", () => {
+        editing = true;
         confirmButton.disabled = false;
-        gameStatus.textContent = 'Statut : Édition de la grille';
+        gameStatus.textContent = "Statut : Édition de la grille";
     });
 
-    confirmButton.addEventListener('click', () => {
-        isEditing = false;
-        gameStatus.textContent = 'Statut : Grille confirmée, prêt à jouer';
+    confirmButton.addEventListener("click", () => {
+        editing = false;
         confirmButton.disabled = true;
+        gameStatus.textContent = "Statut : Grille confirmée";
     });
 
-    restartButton.addEventListener('click', () => {
-        gridData.fill(0);
+    restartButton.addEventListener("click", () => {
+        gridData = Array(64).fill(0);
         createGrid();
-        gameStatus.textContent = 'Statut : Jeu redémarré';
+        gameStatus.textContent = "Statut : Jeu réinitialisé";
     });
 
     // Initialisation
     createGrid();
-    loadForms();
+    loadShapes();
 });
