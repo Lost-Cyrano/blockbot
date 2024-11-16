@@ -1,7 +1,37 @@
 [
-    { "name": "Carré 2x2", "blocks": [0, 1, 8, 9] },
-    { "name": "Ligne de 5", "blocks": [0, 1, 2, 3, 4] },
-    { "name": "Colonne de 3", "blocks": [0, 8, 16] },
-    { "name": "L inversé", "blocks": [0, 1, 8, 16] },
-    { "name": "L classique", "blocks": [0, 8, 16, 17] }
+    {
+        "name": "Carré",
+        "pattern": [
+            [1, 1],
+            [1, 1]
+        ]
+    },
+    {
+        "name": "Ligne",
+        "pattern": [
+            [1, 1, 1, 1]
+        ]
+    },
+    {
+        "name": "T",
+        "pattern": [
+            [0, 1, 0],
+            [1, 1, 1]
+        ]
+    },
+    {
+        "name": "L",
+        "pattern": [
+            [1, 0],
+            [1, 0],
+            [1, 1]
+        ]
+    },
+    {
+        "name": "Z",
+        "pattern": [
+            [1, 1, 0],
+            [0, 1, 1]
+        ]
+    }
 ]
