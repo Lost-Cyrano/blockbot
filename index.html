@@ -3,38 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu Block - IA</title>
+    <title>Block Jeu IA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Jeu Block - Simulation avec IA</h1>
+        <h1>Block Jeu avec IA</h1>
+        <p>Simulateur de jeu avec une IA pour vous aider à trouver les meilleures positions !</p>
     </header>
     <main>
-        <!-- Section pour la grille de jeu -->
-        <section id="game-board">
-            <h2>Grille de Jeu</h2>
+        <div id="controls">
+            <button id="edit-mode">Mode Édition</button>
+            <button id="start-game">Démarrer Partie</button>
+            <button id="reset-grid">Réinitialiser la Grille</button>
+        </div>
+        <div id="game-container">
             <div id="grid"></div>
-        </section>
-
-        <!-- Section pour les contrôles -->
-        <section id="controls">
-            <button id="edit-grid">Éditer la Grille</button>
-            <button id="confirm-grid" disabled>Confirmer la Grille</button>
-            <button id="restart-game">Recommencer</button>
-        </section>
-
-        <!-- Section pour afficher les formes -->
-        <section id="shapes">
-            <h2>Formes Disponibles</h2>
-            <div id="shape-container"></div>
-        </section>
-
-        <!-- Section de statut -->
-        <section id="status">
-            <h3 id="game-status">Statut : En attente</h3>
-        </section>
+        </div>
+        <div id="current-forms">
+            <h2>Formes Actuelles</h2>
+            <div id="forms-container"></div>
+        </div>
+        <div id="status">
+            <p id="game-status">Status: En attente...</p>
+        </div>
     </main>
+    <footer>
+        <p>Créé par <em>Votre Nom</em>. Hébergé sur GitHub.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
